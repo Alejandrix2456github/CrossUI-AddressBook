@@ -9,22 +9,24 @@ xui.Class('App.Address', 'xui.Module',{
                 .setHost(host,"ctl_main")
                 .setDock("fill")
                 .setShowEffects({
-                    "params":{
-                        "translateX":[
-                            "-100%","0%"
+                    "params" : {
+                        "translateX" : [
+                            "-100%",
+                            "0%"
                         ]
                     },
-                    "type":"circOut",
-                    "duration":200
+                    "type" : "circOut",
+                    "duration" : 200
                 })
                 .setHideEffects({
-                    "params":{
-                        "translateX":[
-                            "0%","-100%"
+                    "params" : {
+                        "translateX" : [
+                            "0%",
+                            "-100%"
                         ]
                     },
-                    "type":"circIn",
-                    "duration":200
+                    "type" : "circIn",
+                    "duration" : 200
                 })
                 .setPanelBgClr("#FFFFFF")
             );
@@ -35,23 +37,23 @@ xui.Class('App.Address', 'xui.Module',{
                 .setDirtyMark(false)
                 .setItems([
                     {
-                        "id":"accounts",
-                        "caption":"ACCOUNTS"
+                        "id" : "accounts",
+                        "caption" : "ACCOUNTS"
                     },
                     {
-                        "id":"contacts",
-                        "caption":"CONTACTS"
+                        "id" : "contacts",
+                        "caption" : "CONTACTS"
                     },
                     {
-                        "id":"leads",
-                        "caption":"LEADS"
+                        "id" : "leads",
+                        "caption" : "LEADS"
                     }
                 ])
                 .setDock("center")
-                .setLeft("2.9375em")
-                .setTop("0.625em")
-                .setWidth("auto")
-                .setHeight("1.875em")
+                .setLeft("17.8em")
+                .setTop("0.6em")
+                .setWidth("17em")
+                .setHeight("1.8666666666666667em")
                 .setSelMode("multi")
                 .setBorderType("none")
                 .setLabelHAlign("center")
@@ -60,22 +62,22 @@ xui.Class('App.Address', 'xui.Module',{
                 .setConnected(true)
                 .setValue("accounts;contacts;leads")
                 .beforeUIValueSet({
-                    "return":"{temp.RTN}",
-                    "actions":[
+                    "return" : "{temp.RTN}",
+                    "actions" : [
                         {
-                            "desc":"avoid empty",
-                            "type":"other",
-                            "target":"var",
-                            "method":"temp",
-                            "conditions":[
+                            "desc" : "avoid empty",
+                            "type" : "other",
+                            "target" : "var",
+                            "method" : "temp",
+                            "conditions" : [
                                 {
-                                    "left":"{args[2]}",
-                                    "symbol":"empty",
-                                    "right":""
+                                    "left" : "{args[2]}",
+                                    "symbol" : "empty",
+                                    "right" : ""
                                 }
                             ],
-                            "return":false,
-                            "args":[
+                            "return" : false,
+                            "args" : [
                                 "RTN",
                                 "{false}"
                             ]
@@ -84,17 +86,17 @@ xui.Class('App.Address', 'xui.Module',{
                 })
                 .onItemSelected([
                     {
-                        "desc":"filter fun",
-                        "type":"other",
-                        "target":"var",
-                        "args":[
-                            "filterFun",function anonymous(item,value
-                            /*``*/
-                            ){
-                                if(item.type){
-                                    var arr=value.split(';');
-                                    for(var i=0,l=arr.length;i<l;i++){
-                                        if(xui.arr.indexOf(item.type,arr[i])!==-1){
+                        "desc" : "filter fun",
+                        "type" : "other",
+                        "target" : "var",
+                        "args" : [
+                            "filterFun",
+                            function anonymous( item,
+                            value /*``*/ ){
+                                if( item.type ){
+                                    var arr = value.split( ';' );
+                                    for( var i = 0, l = arr.length; i < l; i ++ ){
+                                        if( xui.arr.indexOf( item.type, arr[i]) !== -1 ){
                                             return false;
                                         }
                                     }
@@ -102,20 +104,24 @@ xui.Class('App.Address', 'xui.Module',{
                                 }
                             }
                         ],
-                        "method":"temp",
-                        "event":2
+                        "method" : "temp",
+                        "event" : 2
                     },
                     {
-                        "desc":"do filter",
-                        "type":"other",
-                        "target":"callback",
-                        "args":[
-                            "{page.xui_ui_list4.doFilter()}",undefined,undefined,"{temp.filterFun}","{args[0].boxing().getValue()}"
+                        "desc" : "do filter",
+                        "type" : "other",
+                        "target" : "callback",
+                        "args" : [
+                            "{page.xui_ui_list4.doFilter()}",
+                            undefined,
+                            undefined,
+                            "{temp.filterFun}",
+                            "{args[0].boxing().getValue()}"
                         ],
-                        "method":"call"
+                        "method" : "call"
                     }
                 ])
-                );
+            );
             
             host.ctl_main.append(
                 xui.create("xui.UI.List")
@@ -123,10 +129,10 @@ xui.Class('App.Address', 'xui.Module',{
                 .setDirtyMark(false)
                 .setDock("fill")
                 .setDockMargin({
-                    "left":0,
-                    "top":50,
-                    "right":0,
-                    "bottom":0
+                    "left" : 0,
+                    "top" : 50,
+                    "right" : 0,
+                    "bottom" : 0
                 })
                 .setLeft("7.5em")
                 .setTop("10.625em")
@@ -140,38 +146,38 @@ xui.Class('App.Address', 'xui.Module',{
                 .setValue("a")
                 .onItemSelected([
                     {
-                        "desc":"set var",
-                        "type":"other",
-                        "target":"var",
-                        "params":[
-                            "detailVar","{args[1]}"
+                        "desc" : "set var",
+                        "type" : "other",
+                        "target" : "var",
+                        "params" : [
+                            "detailVar",
+                            "{args[1]}"
                         ],
-                        "method":"global"
+                        "method" : "global"
                     },
                     {
-                        "desc":"destroy first",
-                        "type":"page",
-                        "target":"App.DetailInfo",
-                        "params":[
-                        ],
-                        "method":"destroy"
+                        "desc" : "destroy first",
+                        "type" : "page",
+                        "target" : "App.DetailInfo",
+                        "params" : [ ],
+                        "method" : "destroy"
                     },
                     {
-                        "desc":"show detail",
-                        "type":"page",
-                        "target":"App.DetailInfo",
-                        "params":[
+                        "desc" : "show detail",
+                        "type" : "page",
+                        "target" : "App.DetailInfo",
+                        "params" : [
                             "{page.ctl_main}"
                         ],
-                        "method":"show"
+                        "method" : "show"
                     }
                 ])
                 .setCustomStyle({
-                    "ITEM":{
-                        "padding":".5em 0"
+                    "ITEM" : {
+                        "padding" : ".5em 0"
                     }
                 })
-                );
+            );
             
             return children;
             // ]]Code created by CrossUI RAD Studio
